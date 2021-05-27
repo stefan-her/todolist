@@ -11,4 +11,7 @@
     <color name="app_top">#b30059</color>
     <color name="app_flaotingbutton_off">#999966</color>
     <color name="app_flaotingbutton_on">#009900</color>
+    <color name="app_priority1">#ff0000</color>
+    <color name="app_priority2">#ff9900</color>
+    <color name="app_priority3">#0066ff</color>
 </resources>

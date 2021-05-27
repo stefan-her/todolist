@@ -1,25 +1,29 @@
 package be.stefan.todolist;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.os.Build;
 import android.os.Bundle;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
+import be.stefan.todolist.adapters.ToDoListAdapter;
+import be.stefan.todolist.models.ItemToDo;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList listToDo;
+    private ArrayList<ItemToDo> listToDo;
     private FloatingActionButton bt_add;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        listToDo = new ArrayList<>();
 
         buildActionBar();
         buildRecyclerView();
@@ -33,19 +37,29 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void buildRecyclerView() {
 
-//        listToDo.add(new Todo();
-//        listToDo.add(new Todo();
-//        listToDo.add(new Todo();
-//        listToDo.add(new Todo();
+//        listToDo.add(new ItemToDo("A faire 1", 1, false, "2020-09-05 12:05"));
+//        listToDo.add(new ItemToDo("A faire 2", 3, true, "2020-10-21 14:40"));
+//        listToDo.add(new ItemToDo("A faire 3", 2, false, "2020-11-19 20:32"));
+//        listToDo.add(new ItemToDo("A faire 4", 2, false, "2020-12-01 18:05"));
+//        listToDo.add(new ItemToDo("A faire 5", 3, true, "2021-02-22 15:15"));
+//        listToDo.add(new ItemToDo("A faire 6", 1, false, "2021-05-27 08:10"));
 
-//        RecyclerView rv_mainFoods = findViewById(R.id.rv_main_foods);
-//        rv_toDo.setHasFixedSize(false);
-//
-//        ToDoRecycleViewAdapter adapter = new ToDoRecycleViewAdapter(listToDo);
-//        rv_toDo.setAdapter(adapter);
-//        rv_toDo.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        listToDo.add(new ItemToDo("A faire 1", 1, false));
+        listToDo.add(new ItemToDo("A faire 2", 3, true));
+        listToDo.add(new ItemToDo("A faire 3", 2, false));
+        listToDo.add(new ItemToDo("A faire 4", 2, false));
+        listToDo.add(new ItemToDo("A faire 5", 3, true));
+        listToDo.add(new ItemToDo("A faire 6", 1, false));
+
+        RecyclerView rv_toDo = findViewById(R.id.rv_todolist);
+        rv_toDo.setHasFixedSize(false);
+
+        ToDoListAdapter adapter = new ToDoListAdapter(listToDo);
+        rv_toDo.setAdapter(adapter);
+
     }
 
     private void addToDo() {
