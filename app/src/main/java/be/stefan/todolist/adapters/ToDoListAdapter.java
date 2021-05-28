@@ -4,17 +4,13 @@ package be.stefan.todolist.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 import be.stefan.todolist.R;
 import be.stefan.todolist.models.ItemToDo;
@@ -60,9 +56,8 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ItemToDo item = listToDo.get(position);
         holder.tv_title.setText(item.getTitle());
-        holder.tv_priority_num.setText(" : "+item.getPriority());
-        //holder.tv_dateIn.setText(item.getSt_dateIn());
-
+        holder.tv_priority_num.setText(context.getResources().getText(R.string.priority) + String.valueOf(item.getPriority()));
+        holder.tv_dateIn.setText(item.getSt_dateIn());
 
         if(item.isDone()) {
             holder.fb_done.setBackgroundTintList(
@@ -73,7 +68,6 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ViewHo
                     ColorStateList.valueOf(context.getColor(R.color.app_floatation_off))
             );
         }
-
 
         int color;
         switch (item.getPriority()) {

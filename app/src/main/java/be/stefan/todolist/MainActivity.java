@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.text.ParseException;
 import java.util.ArrayList;
 import be.stefan.todolist.adapters.ToDoListAdapter;
 import be.stefan.todolist.models.ItemToDo;
@@ -26,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         listToDo = new ArrayList<>();
 
         buildActionBar();
-        buildRecyclerView();
+        try { buildRecyclerView();
+        } catch (ParseException e) {  e.printStackTrace(); }
 
         bt_add = findViewById(R.id.bt_add);
         bt_add.setOnClickListener(v -> { addToDo(); });
@@ -38,21 +41,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void buildRecyclerView() {
+    private void buildRecyclerView() throws ParseException {
 
-//        listToDo.add(new ItemToDo("A faire 1", 1, false, "2020-09-05 12:05"));
-//        listToDo.add(new ItemToDo("A faire 2", 3, true, "2020-10-21 14:40"));
-//        listToDo.add(new ItemToDo("A faire 3", 2, false, "2020-11-19 20:32"));
-//        listToDo.add(new ItemToDo("A faire 4", 2, false, "2020-12-01 18:05"));
-//        listToDo.add(new ItemToDo("A faire 5", 3, true, "2021-02-22 15:15"));
-//        listToDo.add(new ItemToDo("A faire 6", 1, false, "2021-05-27 08:10"));
+        listToDo.add(new ItemToDo("A faire 1", 1, false, "2020-09-05", getApplicationContext()));
+        listToDo.add(new ItemToDo("A faire 2", 3, true, "2020-10-21", getApplicationContext()));
+        listToDo.add(new ItemToDo("A faire 3", 2, false, "2020-11-19", getApplicationContext()));
+        listToDo.add(new ItemToDo("A faire 4", 2, false, "2020-12-01", getApplicationContext()));
+        listToDo.add(new ItemToDo("A faire 5", 3, true, "2021-02-22", getApplicationContext()));
+        listToDo.add(new ItemToDo("A faire 6", 1, false, "2021-05-27", getApplicationContext()));
 
-        listToDo.add(new ItemToDo("A faire 1", 1, false));
-        listToDo.add(new ItemToDo("A faire 2", 3, true));
-        listToDo.add(new ItemToDo("A faire 3", 2, false));
-        listToDo.add(new ItemToDo("A faire 4", 2, false));
-        listToDo.add(new ItemToDo("A faire 5", 3, true));
-        listToDo.add(new ItemToDo("A faire 6", 1, false));
+//        listToDo.add(new ItemToDo("A faire 1", 1, false));
+//        listToDo.add(new ItemToDo("A faire 2", 3, true));
+//        listToDo.add(new ItemToDo("A faire 3", 2, false));
+//        listToDo.add(new ItemToDo("A faire 4", 2, false));
+//        listToDo.add(new ItemToDo("A faire 5", 3, true));
+//        listToDo.add(new ItemToDo("A faire 6", 1, false));
 
         RecyclerView rv_toDo = findViewById(R.id.rv_todolist);
         rv_toDo.setHasFixedSize(false);

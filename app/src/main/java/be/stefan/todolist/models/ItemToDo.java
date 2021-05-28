@@ -1,31 +1,31 @@
 package be.stefan.todolist.models;
 
-
-
+import android.content.Context;
 import android.os.Build;
-
 import androidx.annotation.RequiresApi;
-
 import java.text.DateFormatSymbols;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
+import java.util.Date;
+import be.stefan.todolist.R;
 
 public class ItemToDo {
 
-    private final String PATTERNDATE = "yyyy-MM-dd HH:mm";
+    private final String PATTERNDATEIN = "yyyy-MM-dd";
+    private final String PATTERNDATEOUT = "EEEE dd MM yyyy";
 
     private String title, st_dateIn;
-    //private LocalDateTime dateIn;
+    private Date dateIn;
     private int priority;
     private boolean done;
+    private Context context;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public ItemToDo(String title, int priority, boolean done) {
+    public ItemToDo(String title, int priority, boolean done, String dateIn, Context context) throws ParseException {
+        this.context = context;
         setTitle(title);
-        //setDateIn(dateIn);
+        setDateIn(dateIn);
         setPriority(priority);
         setDone(done);
     }
@@ -54,52 +54,34 @@ public class ItemToDo {
         this.done = done;
     }
 
-
-/*
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private String dateForm(String datetoConvert) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERNDATE);
-        LocalDateTime date = LocalDateTime.parse(datetoConvert);
-
-        DateFormatSymbols formatSymbols = new DateFormatSymbols();
-        String[] week = new String[] {
-                "",
-                "Di",
-                "Lu",
-                "Ma",
-                "Me",
-                "Je",
-                "Ve",
-                "Sa" };
-        formatSymbols.setShortWeekdays(week);
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "EEE dd MMM yyyy HH:mm", formatSymbols);
-
-        return dateFormat.format(datetoConvert);
+    public void setDateIn(String dateIn) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat(PATTERNDATEIN);
+        Date date = formatter.parse(dateIn);
+        this.dateIn = date;
+        this.setSt_dateIn();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void setDateIn(String dateIn) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERNDATE);
-        LocalDateTime date = LocalDateTime.parse(dateIn, formatter);
+    public void setSt_dateIn() {
+        DateFormatSymbols dateFormatSymbols = new DateFormatSymbols();
+        dateFormatSymbols.setWeekdays(new String[]{
+                "",
+                (String) context.getResources().getText(R.string.sunday),
+                (String) context.getResources().getText(R.string.monday),
+                (String) context.getResources().getText(R.string.tuesday),
+                (String) context.getResources().getText(R.string.wednesday),
+                (String) context.getResources().getText(R.string.thusday),
+                (String) context.getResources().getText(R.string.friday),
+                (String) context.getResources().getText(R.string.saturday)
+        });
 
-        this.dateIn = date;
-        this.setSt_dateIn(dateIn);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(PATTERNDATEOUT, dateFormatSymbols);
+        this.st_dateIn = simpleDateFormat.format(this.dateIn);
     }
 
     public String getSt_dateIn() {
         return st_dateIn;
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void setSt_dateIn(String dateIn) {
-        String date = this.dateForm(dateIn);
-        this.st_dateIn = date;
-    }
-
-    public LocalDateTime getDateIn() {
-        return dateIn;
-    }
-*/
 
 }

@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">To do list</string>
+    <string name="priority">Priorité : </string>
+    <string name="sunday">Dimanche</string>
+    <string name="monday">Lundi</string>
+    <string name="tuesday">Mardi</string>
+    <string name="wednesday">Mercredi</string>
+    <string name="thusday">Jeudi</string>
+    <string name="friday">Vendredi</string>
+    <string name="saturday">Samedi</string>
+    <string name="add_todo">Nouvelle tache</string>
+    <string name="bt_add">Ajouter</string>
+    <string name="title_add">Ajouter une nouvelle tache</string>
 </resources>
