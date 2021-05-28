@@ -69,22 +69,24 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ViewHo
         //}
 
 
-//
-//        int colorRes;
-//        switch (item.getPriority()) {
-//            case 1: colorRes = R.color.app_priority1;
-//                break;
-//            case 2: colorRes = R.color.app_priority2;
-//                break;
-//            case 3: colorRes = R.color.app_priority3;
-//                break;
-//            default:
-//                throw new IllegalStateException("Unexpected value: " + item.getPriority());
-//        }
+
+        int color;
+        switch (item.getPriority()) {
+            case 1: color = R.color.app_priority1;
+                break;
+            case 2: color = R.color.app_priority2;
+                break;
+            case 3: color = R.color.app_priority3;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + item.getPriority());
+        }
 
         //holder.v_priority.setBackgroundColor(Color.parseColor(context.getString(colorRes)));
 
-
+        holder.v_priority.setBackgroundColor(
+                context.getResources().getColor(color, context.getTheme())
+        );
 
 
     }
