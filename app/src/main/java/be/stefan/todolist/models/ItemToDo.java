@@ -11,8 +11,14 @@ import be.stefan.todolist.R;
 
 public class ItemToDo {
 
-    private final String PATTERNDATEIN = "yyyy-MM-dd";
-    private final String PATTERNDATEOUT = "EEEE dd MM yyyy";
+    public static final String PATTERNDATEIN = "yyyy-MM-dd";
+    private static final String PATTERNDATEOUT = "EEEE dd MM yyyy";
+
+    public enum levelPriority {
+        HIGH,
+        MIDDLE,
+        LOW
+    }
 
     private String title, st_dateIn;
     private Date dateIn;

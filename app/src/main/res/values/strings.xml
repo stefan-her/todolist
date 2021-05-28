@@ -11,4 +11,9 @@
     <string name="add_todo">Nouvelle tache</string>
     <string name="bt_add">Ajouter</string>
     <string name="title_add">Ajouter une nouvelle tache</string>
+    <string name="high">Urgent</string>
+    <string name="middle">Normal</string>
+    <string name="low">à voir</string>
+    <string name="tv_empty">Rien a faire ;)</string>
+    <string name="toaster_add">Element ajouté à la liste</string>
 </resources>

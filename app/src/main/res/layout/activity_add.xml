@@ -27,6 +27,7 @@
         android:hint="@string/add_todo"
         android:padding="10dp"
         android:textSize="20sp"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
