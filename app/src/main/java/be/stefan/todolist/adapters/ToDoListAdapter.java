@@ -22,17 +22,17 @@ import be.stefan.todolist.models.ItemToDo;
 
 public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ViewHolder> {
 
-    public ArrayList<ItemToDo> listToDo;
+    private ArrayList<ItemToDo> listToDo;
     private Context context;
 
-    public ToDoListAdapter(ArrayList items) {
+    public ToDoListAdapter(ArrayList items, Context context) {
         this.listToDo = items;
         this.context = context;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tv_title, tv_dateIn;
+        private TextView tv_title, tv_dateIn, tv_priority_num;
         private View v_priority;
         private FloatingActionButton fb_done;
 
@@ -41,6 +41,7 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ViewHo
 
             tv_title = itemView.findViewById(R.id.item_title);
             v_priority = itemView.findViewById(R.id.item_priority);
+            tv_priority_num = itemView.findViewById(R.id.item_priority_num);
             tv_dateIn = itemView.findViewById(R.id.item_dateIn);
             fb_done = itemView.findViewById(R.id.item_done);
         }
@@ -54,20 +55,24 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ViewHo
         return new ViewHolder(v);
     }
 
-    @SuppressLint("ResourceType")
+    @SuppressLint({"ResourceType", "SetTextI18n"})
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ItemToDo item = listToDo.get(position);
         holder.tv_title.setText(item.getTitle());
+        holder.tv_priority_num.setText(" : "+item.getPriority());
         //holder.tv_dateIn.setText(item.getSt_dateIn());
 
-        //if(item.isDone()) {
-         //holder.fb_done.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.black, context.getTheme())));
-        //}
-        //else {
-        //    holder.fb_done.setBackgroundColor(Color.parseColor(context.getString(R.color.app_flaotingbutton_off)));
-        //}
 
+        if(item.isDone()) {
+            holder.fb_done.setBackgroundTintList(
+                    ColorStateList.valueOf(context.getColor(R.color.app_floatation_on))
+            );
+        } else {
+            holder.fb_done.setBackgroundTintList(
+                    ColorStateList.valueOf(context.getColor(R.color.app_floatation_off))
+            );
+        }
 
 
         int color;
@@ -82,13 +87,9 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ViewHo
                 throw new IllegalStateException("Unexpected value: " + item.getPriority());
         }
 
-        //holder.v_priority.setBackgroundColor(Color.parseColor(context.getString(colorRes)));
-
         holder.v_priority.setBackgroundColor(
                 context.getResources().getColor(color, context.getTheme())
         );
-
-
     }
 
     @Override

@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rv_toDo = findViewById(R.id.rv_todolist);
         rv_toDo.setHasFixedSize(false);
 
-        ToDoListAdapter adapter = new ToDoListAdapter(listToDo);
+        ToDoListAdapter adapter = new ToDoListAdapter(listToDo, getApplicationContext());
         rv_toDo.setAdapter(adapter);
 
     }
