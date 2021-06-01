@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +31,7 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ViewHo
 
         private TextView tv_title, tv_dateIn, tv_priority_num;
         private View v_priority;
-        private FloatingActionButton fb_done;
+        private CheckBox fb_done;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -59,6 +60,7 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ViewHo
         holder.tv_priority_num.setText(context.getResources().getText(R.string.priority) + String.valueOf(item.getPriority()));
         holder.tv_dateIn.setText(item.getSt_dateIn());
 
+        /*
         if(item.isDone()) {
             holder.fb_done.setBackgroundTintList(
                     ColorStateList.valueOf(context.getColor(R.color.app_floatation_on))
@@ -68,6 +70,10 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ViewHo
                     ColorStateList.valueOf(context.getColor(R.color.app_floatation_off))
             );
         }
+*/
+        if(item.isDone()) { holder.fb_done.setChecked(true); }
+        else { holder.fb_done.setChecked(false); }
+
 
         int color;
         switch (item.getPriority()) {

@@ -22,17 +22,18 @@ public class ItemToDo {
 
     private String title, st_dateIn;
     private Date dateIn;
-    private int priority;
+    private int priority, category;
     private boolean done;
     private Context context;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public ItemToDo(String title, int priority, boolean done, String dateIn, Context context) throws ParseException {
+    public ItemToDo(String title, int priority, int category,boolean done, String dateIn, Context context) throws ParseException {
         this.context = context;
         setTitle(title);
         setDateIn(dateIn);
         setPriority(priority);
+        setCategory(category);
         setDone(done);
     }
 
@@ -50,6 +51,14 @@ public class ItemToDo {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
     }
 
     public boolean isDone() {

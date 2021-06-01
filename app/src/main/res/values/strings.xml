@@ -16,4 +16,6 @@
     <string name="low">à voir</string>
     <string name="tv_empty">Rien a faire ;)</string>
     <string name="toaster_add">Element ajouté à la liste</string>
+    <string name="tv_priority">Priorité</string>
+    <string name="caterory">Catégorie</string>
 </resources>

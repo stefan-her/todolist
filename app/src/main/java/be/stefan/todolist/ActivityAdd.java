@@ -1,16 +1,18 @@
 package be.stefan.todolist;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import java.util.ArrayList;
+
+import be.stefan.todolist.models.Category;
 import be.stefan.todolist.models.ItemToDo;
 
 public class ActivityAdd extends AppCompatActivity {
@@ -18,9 +20,11 @@ public class ActivityAdd extends AppCompatActivity {
     public static final String NEWTODO = "new_todo";
     public static final String LEVELPRIORITY = "new_level_priority";
 
-    private Spinner sp_levelPriority;
+    private Spinner sp_levelPriority, sp_category;
     private EditText et_newTodo;
     private Button bt_add;
+    private ArrayList<String> levels, categories;
+    private ArrayList<Category> categoriesObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +51,25 @@ public class ActivityAdd extends AppCompatActivity {
                 }
         );
 
-        sp_levelPriority = findViewById(R.id.sp_newpriority);
-        buildSpinner(sp_levelPriority);
+        sp_levelPriority = findViewById(R.id.sp_priority);
+        levels = new ArrayList<>();
+        for (ItemToDo.levelPriority item : ItemToDo.levelPriority.values()) {
+            levels.add(String.valueOf(item).toLowerCase());
+        }
+        buildSpinner(sp_levelPriority, levels);
+
+        sp_category = findViewById(R.id.sp_category);
+        categoriesObj = new ArrayList<Category>();
+        categoriesObj.add(new Category(1, "Riri"));
+        categoriesObj.add(new Category(2, "Fifi"));
+        categoriesObj.add(new Category(3, "Zaza"));
+        categories = new ArrayList<>();
+        for (Category item : categoriesObj) {
+            categories.add(item.getName());
+        }
+        buildSpinner(sp_category, categories);
+
+
         bt_add = findViewById(R.id.bt_add);
         bt_add.setEnabled(false);
         bt_add.setOnClickListener(v -> sendValue());
@@ -68,20 +89,19 @@ public class ActivityAdd extends AppCompatActivity {
         finish();
     }
 
-    private void buildSpinner(Spinner obj) {
-        ArrayList<String> levelPrior = new ArrayList<>();
-        for (ItemToDo.levelPriority type : ItemToDo.levelPriority.values()) {
-            String el = String.valueOf(type).toLowerCase();
-            int id = getResources().getIdentifier(el, "string", getPackageName());
-            if(id != 0) { levelPrior.add(getString(id)); }
-            else { levelPrior.add((el)); }
+    private void buildSpinner(Spinner obj, ArrayList<String> items) {
+        ArrayList<String> a = new ArrayList<>();
+        for (String item : items) {
+            int id = getResources().getIdentifier(item, "string", getPackageName());
+            if(id != 0) { a.add(getString(id)); }
+            else { a.add((item)); }
         }
 
         ArrayAdapter<String> sp_levelPriority = new ArrayAdapter<>(
                 getApplicationContext(),
                 android.R.layout.simple_spinner_item,
                 android.R.id.text1,
-                levelPrior
+                a
         );
 
         sp_levelPriority.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

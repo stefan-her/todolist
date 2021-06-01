@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Todolist">
-        <activity android:name=".ActivityAdd"></activity>
+        <activity android:name=".item_empty"></activity>
+        <activity android:name=".ActivityAdd" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
