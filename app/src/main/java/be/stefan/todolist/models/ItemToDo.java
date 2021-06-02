@@ -2,10 +2,13 @@ package be.stefan.todolist.models;
 
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
+
 import androidx.annotation.RequiresApi;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import be.stefan.todolist.R;
 
@@ -67,6 +70,17 @@ public class ItemToDo {
 
     public void setDone(boolean done) {
         this.done = done;
+    }
+
+    public static ArrayList getListEnum(Context context) {
+        ArrayList<String> levels = new ArrayList<>();
+        for (levelPriority item : levelPriority.values()) {
+            int id = context.getResources().getIdentifier(String.valueOf(item).toLowerCase(), "string", context.getPackageName());
+            if(id != 0) { levels.add(context.getString(id)); }
+            else { levels.add(String.valueOf(item)); }
+        }
+
+        return levels;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

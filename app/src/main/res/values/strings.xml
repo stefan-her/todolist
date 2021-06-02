@@ -18,4 +18,8 @@
     <string name="toaster_add">Element ajouté à la liste</string>
     <string name="tv_priority">Priorité</string>
     <string name="caterory">Catégorie</string>
+    <string name="add_new_cat">Nouvelle catégorie</string>
+    <string name="label_name_category">Ajouter une catégorie</string>
+    <string name="dialog_btn_add">Ajouter</string>
+    <string name="dialog_btn_cancel">Annuler</string>
 </resources>

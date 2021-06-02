@@ -1,9 +1,12 @@
 package be.stefan.todolist.models;
 
+import java.util.ArrayList;
+
 public class Category {
     private long categoryId;
     private String name;
     //TODO Add color
+
 
 
     public Category(String name) {

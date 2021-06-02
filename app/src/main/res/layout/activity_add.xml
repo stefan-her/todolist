@@ -60,7 +60,7 @@
 
         <Spinner
             android:id="@+id/sp_priority"
-            android:layout_width="wrap_content"
+            android:layout_width="220sp"
             android:layout_height="25dp"
             android:minWidth="150dp"
             android:spinnerMode="dropdown"
@@ -94,7 +94,7 @@
 
         <Spinner
             android:id="@+id/sp_category"
-            android:layout_width="wrap_content"
+            android:layout_width="220sp"
             android:layout_height="25dp"
             android:minWidth="150dp"
             android:spinnerMode="dropdown"
